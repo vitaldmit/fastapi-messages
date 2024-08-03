@@ -6,19 +6,23 @@ services:
     depends_on:
       - mongodb
     environment:
-      - MONGO_URL=mongodb://mongodb:27017
+      - MONGO_URL=${MONGO_URL}
     networks:
       - app_network
+    env_file:
+      - .env
 
   bot:
     build: ./bot
     depends_on:
       - mongodb
     environment:
-      - MONGO_URL=mongodb://mongodb:27017
-      - TELEGRAM_BOT_TOKEN=7201805915:AAHose5a0zVs-bs98WwcV00MRWCmcz66_p0
+      - MONGO_URL=${MONGO_URL}
+      - TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN}
     networks:
       - app_network
+    env_file:
+      - .env
 
   nginx:
     build: ./nginx
