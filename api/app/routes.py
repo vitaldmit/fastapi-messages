@@ -1,13 +1,15 @@
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter
 from .models import Message
 from .database import get_all_messages, create_message
 
 router = APIRouter()
 
+
 @router.get("/messages/")
 async def read_messages():
     messages = await get_all_messages()
     return messages
+
 
 @router.post("/message/")
 async def write_message(message: Message):
